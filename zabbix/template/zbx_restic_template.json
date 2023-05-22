@@ -1,0 +1,244 @@
+{
+    "zabbix_export": {
+        "version": "6.0",
+        "date": "2023-05-22T14:21:16Z",
+        "groups": [
+            {
+                "uuid": "7df96b18c230490a9a0a9e2307226338",
+                "name": "Templates"
+            }
+        ],
+        "templates": [
+            {
+                "uuid": "77a07d0aeb6a4ec5805122e8bc8b591c",
+                "template": "Restic Backup",
+                "name": "Restic Backup",
+                "groups": [
+                    {
+                        "name": "Templates"
+                    }
+                ],
+                "items": [
+                    {
+                        "uuid": "bad71f19d4a048a19d749fb7e49afa89",
+                        "name": "Restic Backup Added Bytes",
+                        "type": "TRAP",
+                        "key": "restic.backup.added",
+                        "delay": "0",
+                        "units": "B",
+                        "request_method": "POST",
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Restic Backup"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "f8dd4e58d56d49d9ac41fec1d03856c1",
+                        "name": "Restic Backup Execution Time",
+                        "type": "TRAP",
+                        "key": "restic.backup.duration",
+                        "delay": "0",
+                        "units": "s",
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Restic Backup"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "e0979c6cbeb2477aa5ea7ee15638c457",
+                        "name": "Restic Backup",
+                        "type": "TRAP",
+                        "key": "restic.backup.exitcode",
+                        "delay": "0",
+                        "valuemap": {
+                            "name": "Exite Codes with Special Meanings"
+                        },
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Restic Backup"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "b848110367fa48c3bdc482676f8c4a68",
+                                "expression": "last(/Restic Backup/restic.backup.exitcode)<>0",
+                                "name": "Restic Backup on {HOST.NAME} failed",
+                                "priority": "HIGH"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "ff57f0c01aaf4290963541890eb8d675",
+                        "name": "Restic Backup Bytes Processed",
+                        "type": "TRAP",
+                        "key": "restic.backup.pbytes",
+                        "delay": "0",
+                        "units": "B",
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Restic Backup"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "54daf68983434bddb8a55a27ec7a8d71",
+                        "name": "Restic Check",
+                        "type": "TRAP",
+                        "key": "restic.check.exitcode",
+                        "delay": "0",
+                        "valuemap": {
+                            "name": "Exite Codes with Special Meanings"
+                        },
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Restic Backup"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "6a942e8322c84173bc4a18ac6d41233b",
+                                "expression": "last(/Restic Backup/restic.check.exitcode)<>0",
+                                "name": "Restic Check on {HOST.NAME} failed",
+                                "priority": "HIGH"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "8c193f26297b4011b319dac33f9aa71a",
+                        "name": "Restic Check Message",
+                        "type": "TRAP",
+                        "key": "restic.check.message",
+                        "delay": "0",
+                        "trends": "0",
+                        "value_type": "CHAR",
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Restic Backup"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "be70aabf36b14926a61b70b4959180f2",
+                                "expression": "find(/Restic Backup/restic.check.message,,\"regexp\",\"no errors were found\")=0",
+                                "name": "Restic Check on {HOST.NAME} raised errors",
+                                "priority": "HIGH"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "b44d11c5c7804a5987f484255d2e39e4",
+                        "name": "Restic Prune",
+                        "type": "TRAP",
+                        "key": "restic.prune.exitcode",
+                        "delay": "0",
+                        "valuemap": {
+                            "name": "Exite Codes with Special Meanings"
+                        },
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Restic Backup"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "905be373257a438692a476ba9f0521ec",
+                                "expression": "last(/Restic Backup/restic.prune.exitcode)<>0",
+                                "name": "Restic Prune on {HOST.NAME} failed",
+                                "priority": "HIGH"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "edb0ccfae30a41319f09383b6890209c",
+                        "name": "Restic Backup Utilization Bytes",
+                        "type": "TRAP",
+                        "key": "restic.prune.remaining",
+                        "delay": "0",
+                        "value_type": "FLOAT",
+                        "units": "M",
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Restic Backup"
+                            }
+                        ]
+                    }
+                ],
+                "valuemaps": [
+                    {
+                        "uuid": "306152695fe54ec4a1999ae170be19f9",
+                        "name": "Exite Codes with Special Meanings",
+                        "mappings": [
+                            {
+                                "value": "0",
+                                "newvalue": "Succeeded"
+                            },
+                            {
+                                "value": "1",
+                                "newvalue": "General Error"
+                            },
+                            {
+                                "value": "2",
+                                "newvalue": "Misuse of shell builtins"
+                            },
+                            {
+                                "value": "126",
+                                "newvalue": "Command invoked cannot execute"
+                            },
+                            {
+                                "value": "127",
+                                "newvalue": "Command not found"
+                            },
+                            {
+                                "value": "128",
+                                "newvalue": "Invalid argument to exit"
+                            },
+                            {
+                                "value": "130",
+                                "newvalue": "Script terminated by Control-C"
+                            },
+                            {
+                                "value": "137",
+                                "newvalue": "Fatal error signal \"9\""
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "graphs": [
+            {
+                "uuid": "82ec0a1aafd44645b9edf9fc1ce60b78",
+                "name": "Restic Backup Bytes Added vs. Bytes Total",
+                "graph_items": [
+                    {
+                        "drawtype": "FILLED_REGION",
+                        "color": "1A7C11",
+                        "item": {
+                            "host": "Restic Backup",
+                            "key": "restic.backup.pbytes"
+                        }
+                    },
+                    {
+                        "sortorder": "1",
+                        "drawtype": "FILLED_REGION",
+                        "color": "F63100",
+                        "item": {
+                            "host": "Restic Backup",
+                            "key": "restic.backup.added"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
